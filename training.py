@@ -196,7 +196,7 @@ if __name__ == '__main__':
     model_scripted = torch.jit.script(model)
     model_scripted.save('model_scripted.pt')
 
-    # torch.save(model, 'models/model.pth')
+    
 
             
 
