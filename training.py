@@ -21,7 +21,6 @@ class Model(torch.nn.Module):
             torch.nn.Linear(20,20),
             torch.nn.ReLU(),
             torch.nn.Linear(20,2)
-
         ) 
     
     
@@ -193,7 +192,10 @@ if __name__ == '__main__':
     test_loss /= test_size
     print(f'Model Evaluation - Loss: {test_loss}')
 
-    torch.save(model, 'models/model.pth')
+    model_scripted = torch.jit.script(model)
+    model_scripted.save('models/model_scripted.pt')
+
+    # torch.save(model, 'models/model.pth')
 
             
 

@@ -1,3 +1,6 @@
+<!-- 
+    @author: Max Rivera
+ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +15,7 @@
     <p>
         Simply enter in building characterisitcs, then click 'Predict' to generate heating and cooling load. 
     </p>
-    <form>
+    <form id='form'>
         <label for='relative_compactness'>Relative Compactness</label>
         <input type="text" id='relative_compactness' placeholder="relative compactness">
         <label for='surface_area'>Surface Area</label>
@@ -32,7 +35,9 @@
     </form>
     <button id="predict_button" class="button">Predict</button>
     <form>
+        <label for='heating_load'>Heating Load</label>
         <textarea id="heating_load" placeholder="heating load" rows="1" cols="10"></textarea>
+        <label for='cooling_load'>Cooling Load</label>
         <textarea id="cooling_load" placeholder="cooling load" rows="1" cols="10"></textarea>
     </form>
     <script src="/static/script.js"></script>
