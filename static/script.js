@@ -20,40 +20,54 @@ predictBtn.addEventListener('click',function() {
     glazing_area = document.getElementById('glazing_area').value;
     glazing_area_distribution = document.getElementById('glazing_area_distribution').value;
 
-    // create a new FormData object and append input elements 
-    let formData = new FormData();
-    formData.append("relative_compactness",relative_compactness);
-    formData.append("surface_area", surface_area);
-    formData.append("wall_area",wall_area);
-    formData.append("roof_area",roof_area);
-    formData.append("overall_height",overall_height);
-    formData.append("orientation",orientation_);
-    formData.append("glazing_area", glazing_area);
-    formData.append("glazing_area_distribution",glazing_area_distribution);
-    console.log("hello");
+    // error check to make sure input is valid 
+    var arr = [
+        relative_compactness,
+        surface_area,
+        wall_area,
+        roof_area,
+        overall_height,
+        orientation_,
+        glazing_area,
+        glazing_area_distribution
+    ]
+
+    const isEmpty = (element) => element == "";
+    const isNumber = (element) => isNaN(element);
+    if (arr.some(isNumber)) {
+        alert("Please enter in only numerical digits");
+    } else if (arr.some(isEmpty)) {
+        alert("Please make sure all input fields are filled");
+    } else {
+
+        // create a new FormData object and append input elements 
+        let formData = new FormData();
+        formData.append("relative_compactness",relative_compactness);
+        formData.append("surface_area", surface_area);
+        formData.append("wall_area",wall_area);
+        formData.append("roof_area",roof_area);
+        formData.append("overall_height",overall_height);
+        formData.append("orientation",orientation_);
+        formData.append("glazing_area", glazing_area);
+        formData.append("glazing_area_distribution",glazing_area_distribution);
+        console.log("hello");
+
+        // API call 
+        fetch(backendURL, {
+            method:"POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                heating_output.value = data['heating_load'];
+                cooling_output.value = data['cooling_load'];
+            });
+    }
 
 
-    // REST API call
-    // let response = await fetch(backendURL, {
-    //     method: "POST",
-    //     body: formData
-    // });
-
-    // if (response.ok) {
-    //     alert("fetch worked");
-    // } else {
-    //     alert("HTTP-Error: " + response.status);
-    // }
-
-    fetch(backendURL, {
-        method:"POST",
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            heating_output.value = data['message'];
-            cooling_output.value = data['message'];
-        });
+    
+    
+    
 
     
 

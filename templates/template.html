@@ -16,29 +16,50 @@
         Simply enter in building characterisitcs, then click 'Predict' to generate heating and cooling load. 
     </p>
     <form id='form'>
-        <label for='relative_compactness'>Relative Compactness</label>
-        <input type="text" id='relative_compactness' placeholder="relative compactness">
-        <label for='surface_area'>Surface Area</label>
-        <input type="text" id='surface_area' placeholder='surface area'>
-        <label for='wall_area'>Wall Area</label>
-        <input type="text" id='wall_area' placeholder='wall area'>
-        <label for='roof_area'>Roof Area</label>
-        <input type="text" id='roof_area' placeholder='roof area'>
-        <label for='overall_height'>Overall Height</label>
-        <input type="text" id='overall_height' placeholder='overall height'>
-        <label for='orientation'>Orientation</label>
-        <input type="text" id='orientation' placeholder='orientation'>
-        <label for='glazing_area'>Glazing Area</label>
-        <input type='text' id='glazing_area' placeholder='glazing area'>
-        <label for='glazing_area_distribution'>Glazing Area Distribution</label>
-        <input type='text' id='glazing_area_distribution' placeholder='glazing area distribution'>
+        <div>
+            <label for='relative_compactness' class="label">Relative Compactness</label>
+            <input type="text" id='relative_compactness'>
+        </div>
+        <div>
+            <label for='surface_area' class="label">Surface Area</label>
+            <input type="text" id='surface_area'>
+        </div>
+        <div>
+            <label for='wall_area' class="label">Wall Area</label>
+            <input type="text" id='wall_area'>
+        </div>
+        <div>
+            <label for='roof_area' class="label">Roof Area</label>
+            <input type="text" id='roof_area'>
+        </div>
+        <div>
+            <label for='overall_height' class="label">Overall Height</label>
+            <input type="text" id='overall_height'>
+        </div>
+        <div>
+            <label for='orientation' class="label">Orientation</label>
+            <input type="text" id='orientation'>
+        </div>
+        <div>
+            <label for='glazing_area' class="label">Glazing Area</label>
+            <input type='text' id='glazing_area'>
+        </div>
+        <div>
+            <label for='glazing_area_distribution' class="label">Glazing Area Distribution</label>
+            <input type='text' id='glazing_area_distribution'>
+        </div>
+        
     </form>
     <button id="predict_button" class="button">Predict</button>
     <form>
-        <label for='heating_load'>Heating Load</label>
-        <textarea id="heating_load" placeholder="heating load" rows="1" cols="10"></textarea>
-        <label for='cooling_load'>Cooling Load</label>
-        <textarea id="cooling_load" placeholder="cooling load" rows="1" cols="10"></textarea>
+        <div>
+            <label for='heating_load' class="label">Heating Load</label>
+            <textarea id="heating_load" rows="1"></textarea>
+        </div>
+        <div>
+            <label for='cooling_load' class="label">Cooling Load</label>
+            <textarea id="cooling_load" rows="1"></textarea>
+        </div>
     </form>
     <script src="/static/script.js"></script>
 </body>

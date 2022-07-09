@@ -3,7 +3,6 @@
 """
 from flask import Flask, request, jsonify, render_template
 import torch
-import numpy as np
 
 app = Flask(__name__)
 
@@ -14,25 +13,42 @@ def index():
 @app.route('/backend', methods=['POST'])
 def predict():
 
-    relative_compactness = request.form['relative_compactness']
-    surface_area = request.form['surface_area']
-    wall_area = request.form['wall_area']
-    roof_area = request.form['roof_area']
-    overall_height = request.form['overall_height']
-    orientation = request.form['orientation']
-    glazing_area = request.form['glazing_area']
-    glazing_area_distribution = request.form['glazing_area_distribution']
+    # grab the input values from the API call 
+    relative_compactness = float(request.form['relative_compactness'])
+    surface_area = float(request.form['surface_area'])
+    wall_area = float(request.form['wall_area'])
+    roof_area = float(request.form['roof_area'])
+    overall_height = float(request.form['overall_height'])
+    orientation = float(request.form['orientation'])
+    glazing_area = float(request.form['glazing_area'])
+    glazing_area_distribution = float(request.form['glazing_area_distribution'])
 
-    model = torch.load('models/model.pth')
+    # create input tensor from input values 
+    input_tensor = torch.Tensor([
+        relative_compactness,
+        surface_area,
+        wall_area,
+        roof_area,
+        overall_height,
+        orientation,
+        glazing_area,
+        glazing_area_distribution
+    ])
 
-    input_tensor = torch.Tensor([1,2,3,4,5,6,7,8])
+    # load model 
+    model = torch.jit.load('model_scripted.pt')
+    model.to(torch.device('cpu'))
+    model.eval()
+
+    # get prediction results 
     pred = model(input_tensor)
-    print(pred)
+    heating_load, cooling_load = pred[0].item(), pred[1].item()
+    results = {
+        'heating_load': heating_load,
+        'cooling_load': cooling_load
+    }
 
-
-    
-    message = {'message': "hello there"}
-    return jsonify(message)
+    return jsonify(results)
 
 
 if __name__ == "__main__":

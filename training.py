@@ -192,8 +192,9 @@ if __name__ == '__main__':
     test_loss /= test_size
     print(f'Model Evaluation - Loss: {test_loss}')
 
+    model.to(torch.device('cpu'))
     model_scripted = torch.jit.script(model)
-    model_scripted.save('models/model_scripted.pt')
+    model_scripted.save('model_scripted.pt')
 
     # torch.save(model, 'models/model.pth')
 
