@@ -1,10 +1,9 @@
 /*
 @author: Max Rivera
 */
-const backendURL = "http://127.0.0.1:5000/backend";
+const backendURL = location.protocol + '//' + location.host + '/' + 'backend';
 var heating_output = document.getElementById("heating_load");
 var cooling_output = document.getElementById("cooling_load");
-
 
 // predict button
 const predictBtn = document.querySelector('#predict_button');

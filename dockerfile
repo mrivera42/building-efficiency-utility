@@ -1,6 +1,6 @@
-FROM continuumio/anaconda3:4.4.0
-COPY . /usr/app/
-EXPOSE 5000 
+FROM python:3.10
 WORKDIR /usr/app
+EXPOSE 5000 
+COPY . .
 RUN pip install -r requirements.txt
-CMD python app.py
+CMD ["flask", "run", "--host", "0.0.0.0"]

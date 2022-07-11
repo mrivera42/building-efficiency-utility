@@ -1,45 +1,6 @@
-brotlipy @ file:///Users/runner/miniforge3/conda-bld/brotlipy_1636012319596/work
-certifi==2022.5.18.1
-cffi @ file:///Users/runner/miniforge3/conda-bld/cffi_1636046173594/work
-charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1644853463426/work
-click==8.1.3
-colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1602866480661/work
-conda==4.13.0
-conda-package-handling @ file:///Users/runner/miniforge3/conda-bld/conda-package-handling_1647355403437/work
-coremltools==5.2.0
-cryptography @ file:///Users/runner/miniforge3/conda-bld/cryptography_1647857630705/work
-cycler==0.11.0
-Flask==2.0.3
-fonttools==4.33.3
-future @ file:///Users/ktietz/Code/oss/ci_pkgs/future_1626786552456/work
-idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1642433548627/work
-itsdangerous==2.1.2
-Jinja2==3.1.2
-kiwisolver==1.4.3
-MarkupSafe==2.1.1
-matplotlib==3.5.2
-mpmath==1.2.1
-numpy==1.22.3
-packaging==21.3
-Pillow==9.0.1
-pocketsphinx @ git+https://github.com/CloudCosmos/pocketsphinx-python@38e72f15913812bf74c79d9f57dc06ef2676766c
-protobuf==3.20.1
-py @ file:///home/conda/feedstock_root/build_artifacts/py_1636301881863/work
-pycosat @ file:///Users/runner/miniforge3/conda-bld/pycosat_1636020570107/work
-pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
-pydub==0.25.1
-pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1643496850550/work
-pyparsing==3.0.8
-PySocks @ file:///Users/runner/miniforge3/conda-bld/pysocks_1635862736740/work
-python-dateutil==2.8.2
-requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1641580202195/work
-ruamel-yaml-conda @ file:///Users/runner/miniforge3/conda-bld/ruamel_yaml_1636009262461/work
-six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
-SpeechRecognition==3.8.1
-sympy==1.10.1
-torch==1.10.2
-torchvision==0.2.2
-tqdm @ file:///home/conda/feedstock_root/build_artifacts/tqdm_1646031859244/work
-typing_extensions @ file:///opt/conda/conda-bld/typing_extensions_1647553014482/work
-urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1647489083693/work
-Werkzeug==2.0.3
+Flask==2.1.2
+matplotlib==3.5.1
+numpy==1.21.5
+pandas==1.4.1
+scikit_learn==1.1.1
+torch==1.12.0
