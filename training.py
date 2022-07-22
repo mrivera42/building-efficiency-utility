@@ -97,8 +97,28 @@ if __name__ == '__main__':
                     kfold = KFold(n_splits=k_folds, shuffle=True)
                     for fold, (train_ids, val_ids) in enumerate(kfold.split(x_trainval)): 
 
-                        # normalize data 
+                        # get x_train, y_train, x_val, y_val
+                        x_train = x_trainval.iloc[train_ids, :]
+                        y_train = y_trainval.iloc[train_ids,:]
+                        x_val = x_trainval.iloc[val_ids,:]
+                        y_val = y_trainval.iloc[val_ids,:]
                         
+                        print(f'x_train: {x_train.shape}')
+                        print(f'y_train: {y_train.shape}')
+                        print(f'x_val: {x_val.shape}')
+                        print(f'y_val: {y_val.shape}')
+
+                        # normalize data 
+                        for column in x_train.columns:
+                            x_train[column] = (x_train[column] - x_train[column].min()) / (x_train[column].max() - x_train[column].min())
+                            x_val[column] = (x_val[column] - x_val[column].min()) / (x_val[column].max() - x_val[column].min())
+                        
+                        
+                        
+
+
+                    
+
 
 
 
