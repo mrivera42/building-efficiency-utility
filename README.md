@@ -47,7 +47,7 @@ The base model was trained for 20 epochs using the Adam optimizer, yielding a fi
 ![loss plot](./results/loss_plot.png)
 
 ## Hyperparameter Tuning 
-To order to select the best hyperparameters for the final model, randomized search with 5-fold cross validation was used. Random search randomly samples unique values for all hyperparameters during each search iteration, with a runtime of O(n). This is much more computationally efficient than traditional grid search and still ensures the space of possible values is richly explored. It's important to determine the appropriate scale for each hyperparameter independently. The num_units and num_hidden_layers can be sampled on a linear scale, while lr and num_epochs have to be sampled on a log scale. This is because these hyperparameters are more sensitive to values on the high or low end, so we don't want to waste computation sampling from the scale evenly. The number of searches was set to 10, and for each search the validation accuracy was averaged over 5 folds. The best performing hyperparameters were : 
+To order to select the best hyperparameters for the final model, randomized search with 5-fold cross validation was used. Random search randomly samples unique values for all hyperparameters during each search iteration, with a runtime of O(n). This is much more computationally efficient than traditional grid search and still ensures the space of possible values is richly explored. It's important to determine the appropriate scale for each hyperparameter independently. The num_units and num_hidden_layers can be sampled on a linear scale, while lr and num_epochs have to be sampled on a log scale. This is because these hyperparameters are more sensitive to values on the high or low end, so we don't want to waste computation sampling from the scale evenly. The number of searches was set to 10, and for each search the validation loss was averaged over 5 folds. The best performing hyperparameters were : 
 * lr: 0.003
 * hum_hidden_layers: 3
 * num_hidden_units: 25
@@ -55,6 +55,9 @@ To order to select the best hyperparameters for the final model, randomized sear
 with a validation loss of 0.806
 
 ## Final Model Training 
+To prevent overfitting, num_epochs was changed to 1, while the other best performing parameters were kept the same. This resulted in a final training loss of 0.047 and final test loss of 0.077, a large improvement from the base model. The loss plot during training can be seen below: 
+![final_lossplot](./results/loss_plot.png)
+
 
 
 
