@@ -126,6 +126,7 @@ if __name__ == "__main__":
     print(f'Test loss: {test_loss}')
     
     # export model 
+    model.to(torch.device('cpu'))
     model_scripted = torch.jit.script(model)
     model_scripted.save('models/final_model.pt')
 

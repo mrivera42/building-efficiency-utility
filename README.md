@@ -77,7 +77,7 @@ docker build -t building-efficiency-tool .
 ```
 3. run the Docker container 
 ```
-docker run -p 8000:5000 building-efficiency-tool
+docker run -p 5000:5000 building-efficiency-tool
 ```
 4. copy and paste the resulting address into your brower 
 
