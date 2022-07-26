@@ -4,7 +4,7 @@ Predicting energy performance of buildings (EPB) is important for designing buil
 In this projects I developed a PyTorch neural network that predicts energy loads of buildings based on 8 input characteristics. The model was then deployed in a web app using a REST API and containerized with Docker. 
 
 ## Exploratory Data Analysis
-The dataset consisted of 768 samples, 8 features, and 2 outputs (heating load, and cooling load), with the units shown below:
+The dataset consisted of 768 samples, 8 features, and 2 outputs (heating load and cooling load), with the units shown below:
 * relative compactness (decimal) 
 * surface area (m^2)
 * wall area (m^2)
@@ -47,7 +47,7 @@ The base model was trained for 20 epochs using the Adam optimizer, yielding a fi
 ![loss plot](./results/loss_plot.png)
 
 ## Hyperparameter Tuning 
-To order to select the best hyperparameters for the final model, randomized search with 5-fold cross validation was used. Random search randomly samples unique values for all hyperparameters during each search iteration, with a runtime of O(n). This is much more computationally efficient than traditional grid search and still ensures the space of possible values is richly explored. It's important to determine the appropriate scale for each hyperparameter independently. The num_units and num_hidden_layers can be sampled on a linear scale, while lr and num_epochs have to be sampled on a log scale. This is because these hyperparameters are more sensitive to values on the high or low end, so we don't want to waste computation sampling from the scale evenly. The number of searches was set to 10, and for each search the validation loss was averaged over 5 folds. The best performing hyperparameters were : 
+In order to see if any improvements can be made, randomized search with 5-fold cross validation was used to tune hyperparameters. Random search randomly samples unique values for all hyperparameters during each search iteration, with a runtime of O(n). This is much more computationally efficient than traditional grid search and still ensures the space of possible values is richly explored. It's important to determine the appropriate scale for each hyperparameter independently. The num_units and num_hidden_layers can be sampled on a linear scale, while lr and num_epochs have to be sampled on a log scale. This is because lr and num_epochs are more sensitive to values on the high or low end, so we don't want to waste computation sampling from the scale evenly. The number of searches was set to 10, and for each search the validation loss was averaged over 5 folds. The best performing hyperparameters were : 
 * lr: 0.003
 * hum_hidden_layers: 3
 * num_hidden_units: 25
@@ -55,9 +55,31 @@ To order to select the best hyperparameters for the final model, randomized sear
 with a validation loss of 0.806
 
 ## Final Model Training 
-To prevent overfitting, num_epochs was changed to 1, while the other best performing parameters were kept the same. This resulted in a final training loss of 0.047 and final test loss of 0.077, a large improvement from the base model. The loss plot during training can be seen below: 
-![final_lossplot](./results/loss_plot.png)
+To prevent overfitting, num_epochs was changed to 1, while the other best performing parameters were kept the same. This resulted in a final training loss of 0.047 and final test loss of 0.077, a large improvement from the base model, and with little variance. The loss plot during training can be seen below: 
+![final_lossplot](./results/final_lossplot.png)
 
+# Deployment in WebApp 
+The model was exported as a TorchScript model, which is the recommended way to serialize PyTorch models for deployment. The webapp was created using HTML, CSS, pure JavaScript, and Python (Flask). The user can input features into text fields and press a prediction button to output the model prediction. The front end is kept separate from the backend, using JavaScript's fetch command to send a request to the Flask backend url and receive the model predictions as a response. The front-end was also served using the backend Flask server. 
+
+# Containerization with Docker 
+A Docker file was then created using a base image of ```python:3.10```, then using commands to copy the current working directory into the container directory, expose port 5000, pip install requirements, and run the app. 
+
+
+# How to Run using Docker 
+
+1. download repo 
+```
+git clone https://github.com/mrivera42/building-efficiency-utility.git
+```
+2. build the Docker image 
+```
+docker build -t building-efficiency-tool .
+```
+3. run the Docker container 
+```
+docker run -p 8000:5000 building-efficiency-tool
+```
+4. copy and paste the resulting address into your brower 
 
 
 

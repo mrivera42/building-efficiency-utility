@@ -36,7 +36,7 @@ def predict():
     ])
 
     # load model 
-    model = torch.jit.load('model_scripted.pt')
+    model = torch.jit.load('models/final_model.pt')
     model.to(torch.device('cpu'))
     model.eval()
 
